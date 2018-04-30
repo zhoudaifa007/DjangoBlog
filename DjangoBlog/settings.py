@@ -27,7 +27,7 @@ DEBUG = False
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['www.lylinux.net', '127.0.0.1', 'example.com']
+ALLOWED_HOSTS = ['www.lingli91.com', '127.0.0.1', 'lingli91.com']
 # Application definition
 
 INSTALLED_APPS = [
@@ -96,7 +96,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangoblog',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'redhat',
         'HOST': '127.0.0.1',
         'PORT': 3306,
     }
@@ -151,12 +151,10 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 # 允许使用用户名或密码登录
 AUTHENTICATION_BACKENDS = ['accounts.user_login_backend.EmailOrUsernameModelBackend']
 
-#STATIC_ROOT = os.path.join(SITE_ROOT, 'staticssss')
-STATIC_ROOT = 'F:/github/DjangoBlog/static'
+STATIC_ROOT = os.path.join(SITE_ROOT, 'collectstatic')
 
 STATIC_URL = '/static/'
-#STATICFILES = os.path.join(BASE_DIR, 'static')
-STATICFILES = ('F:/github/DjangoBlog/static',)
+STATICFILES = os.path.join(BASE_DIR, 'static')
 
 AUTH_USER_MODEL = 'accounts.BlogUser'
 LOGIN_URL = '/login/'
@@ -164,11 +162,11 @@ LOGIN_URL = '/login/'
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 DATE_TIME_FORMAT = '%Y-%m-%d'
 
-SITE_NAME = '且听风吟'
-SITE_URL = 'http://www.lylinux.net'
-SITE_DESCRIPTION = '大巧无工,重剑无锋.'
+SITE_NAME = 'Frank'
+SITE_URL = 'http://www.lingli91.com'
+SITE_DESCRIPTION = '实验是检验真理的唯一标准'
 SITE_SEO_DESCRIPTION = '小站主要用来分享和记录学习经验,教程,记录个人生活的点滴以及一些随笔.'
-SITE_SEO_KEYWORDS = 'linux,apache,mysql,服务器,ubuntu,shell,web,csharp,.net,asp,mac,swift,python,django'
+SITE_SEO_KEYWORDS = 'linux,nginx,mysql,java,ubuntu,shell,web,python,django'
 ARTICLE_SUB_LENGTH = 300
 SHOW_GOOGLE_ADSENSE = False
 # bootstrap颜色样式
@@ -210,27 +208,27 @@ OAHUTH = {
     'sina': {
         'appkey': os.environ.get('SINA_APP_KEY'),
         'appsecret': os.environ.get('SINA_APP_SECRET'),
-        'callbackurl': 'http://www.lylinux.net/oauth/authorize?type=weibo'
+        'callbackurl': 'https://www.lingli91.com/oauth/authorize?type=weibo'
     },
     'google': {
         'appkey': os.environ.get('GOOGLE_APP_KEY'),
         'appsecret': os.environ.get('GOOGLE_APP_SECRET'),
-        'callbackurl': 'http://www.lylinux.net/oauth/authorize?type=google'
+        'callbackurl': 'https://www.lingli91.com/oauth/authorize?type=google'
     },
     'github': {
         'appkey': os.environ.get('GITHUB_APP_KEY'),
         'appsecret': os.environ.get('GITHUB_APP_SECRET'),
-        'callbackurl': 'http://www.lylinux.net/oauth/authorize?type=github'
+        'callbackurl': 'https://www.lingli91.com/oauth/authorize?type=github'
     },
     'facebook': {
         'appkey': os.environ.get('FACEBOOK_APP_KEY'),
         'appsecret': os.environ.get('FACEBOOK_APP_SECRET'),
-        'callbackurl': 'http://www.lylinux.net/oauth/authorize?type=facebook'
+        'callbackurl': 'https://www.lingli91.com/oauth/authorize?type=facebook'
     }
 }
 
 SITE_ID = 1
-BAIDU_NOTIFY_URL = "http://data.zz.baidu.com/urls?site=https://www.lylinux.net&token=1uAOGrMsUm5syDGn"
+BAIDU_NOTIFY_URL = "http://data.zz.baidu.com/urls?site=https://www.lingli91.com&token=1uAOGrMsUm5syDGn"
 
 # Emial:
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
