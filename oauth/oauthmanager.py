@@ -226,17 +226,16 @@ class GitHubOauthManager(BaseOauthManager):
         params = {
             'client_id': self.client_id,
             'client_secret': self.client_secret,
-            'grant_type': 'authorization_code',
-            'code': code,
-
-            'redirect_uri': self.callback_url
+            'code': code
         }
+        logger.info('send accesss request' + json.dumps(params))
         rsp = self.do_post(self.TOKEN_URL, params)
-
+        logger.info('get access token resp' + rsp)
         try:
             from urllib import parse
             r = parse.parse_qs(rsp)
             self.access_token = (r['access_token'][0])
+            logger.info('get access token success')
             return self.access_token
         except:
             return None
@@ -246,13 +245,15 @@ class GitHubOauthManager(BaseOauthManager):
         params = {
             'access_token': self.access_token
         }
+        logger.info('get userinfo request' + json.dumps(params))
         rsp = self.do_get(self.API_URL, params)
-
+        logger.info('get userinfo response' + rsp)
         try:
             datas = json.loads(rsp)
+            logger.info('get userinfo datas'+ json.dumps(datas))
             user = OAuthUser()
             user.picture = datas['avatar_url']
-            user.nikename = datas['name']
+            user.nikename = datas['login']
             user.openid = datas['id']
             user.type = 'github'
             user.token = self.access_token

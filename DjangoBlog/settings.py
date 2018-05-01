@@ -27,7 +27,7 @@ DEBUG = False
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['www.lingli91.com', '127.0.0.1', 'lingli91.com']
+ALLOWED_HOSTS = ['www.lingli91.com', '127.0.0.1', 'lingli91.com', 'example.com']
 # Application definition
 
 INSTALLED_APPS = [
