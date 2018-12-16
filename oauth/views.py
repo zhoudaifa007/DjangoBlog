@@ -16,6 +16,8 @@ from django.contrib.sites.models import Site
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseForbidden
 from .oauthmanager import get_manager_by_type
+from DjangoBlog.utils import logger
+import json
 
 
 def oauthlogin(request):
@@ -40,15 +42,16 @@ def authorize(request):
     manager = get_manager_by_type(type)
     if not manager:
         return HttpResponseRedirect('/')
+    logger.info('get manager success')
     code = request.GET.get('code', None)
     rsp = manager.get_access_token_by_code(code)
     nexturl = request.GET.get('next_url', None)
     if not nexturl:
         nexturl = '/'
     if not rsp:
+        logger.info('get access_token failed')
         return HttpResponseRedirect(manager.get_authorization_url(nexturl))
     user = manager.get_oauth_userinfo()
-
     if user:
         if not user.nikename:
             import datetime
@@ -75,11 +78,15 @@ def authorize(request):
                     author.save()
 
             user.author = author
+            logger.info('start to save user')
             user.save()
+            logger.info('save user success')
             login(request, author)
             return HttpResponseRedirect(nexturl)
         if not email:
+            logger.info('start to save user')
             user.save()
+            logger.info('save user success')
             url = reverse('oauth:require_email', kwargs={
                 'oauthid': user.id
             })
